@@ -4,6 +4,7 @@ var filesToCache = ["/", "/audio/"];
 self.addEventListener("install", function (e) {
   e.waitUntil(
     caches.open(cacheName).then(function (cache) {
+      console.log("Service Worker: Caching Files", filesToCache);
       return cache.addAll(filesToCache);
     })
   );
