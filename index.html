@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>PWA Demo for DrupalCamp Krasnodar 2017</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="images/favicon.ico">
+
+    <meta name="theme-color" content="#1f2c79">
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111260700-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+        function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
         gtag('config', 'UA-111260700-1');
@@ -15,41 +23,37 @@
 
     <script type="application/javascript">
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+            navigator.serviceWorker.register('service-worker.js').then(function(registration) {
                 console.log('Service worker registration succeeded:', registration.scope);
-            }).catch(function (error) {
+            }).catch(function(error) {
                 console.log('Service worker registration failed:', error);
             });
         } else {
             console.log('Service workers are not supported.');
         }
     </script>
-    <script type="application/javascript">
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
-
-            var x = document.getElementById("audio");
-            x.play();
-
-            // stop microphone stream acquired by getUserMedia
-            stream.getTracks().forEach(function (track) { track.stop(); });
-        });
-
-    </script>
-
 </head>
-
 <body>
-    <div>play audio</div>
-    <div>获得麦克风权限才会有效, 因为谷歌浏览器不允许自动播放音频,除非用户点击过一次,给麦克风权限就可以绕过</div>
-    <audio id="audio" loop autoplay controls>
-        <!-- <source src="./audio/武士刀摆动_爱给网_aigei_com.wav" type="audio/wav"> -->
-        <source src="./audio/武士刀摆动_爱给网_aigei_com_out.wav" type="audio/wav">
-        <!-- <source src="./audio/IAddOneSecondForElder_Audio_slient.wav" type="audio/wav"> -->
-        <!-- <source src="./audio/IAddOneSecondForElder_Audio_slient_out.wav" type="audio/wav"> -->
 
-    </audio>
-    <!-- <iframe src="./audio/武士刀摆动_爱给网_aigei_com.wav" allow="autoplay" id="audio" style="display: none"></iframe> -->
+    <header>
+        <h1>Time to go offline!</h1>
+        <p>
+            <a target="_blank" rel="noopener" href="https://kkomelin.github.io/pwa-demo/" class="app-link">kkomelin.github.io/pwa-demo</a>
+        </p>
+    </header>
+
+    <div class="content">
+        <img width="190" src="https://www.drupal.org/files/druplicon-small.png" alt="DrupalCamp Krasnodar 2017 Logo" />
+    </div>
+
+    <footer>
+        <div class="col col-1">
+            <a target="_blank" rel="noopener" href="http://2017.drupalyug.ru/program/sessions/progressive-web-apps-kak-zamena-mobilnym-prilozheniyam">Presentation</a>
+        </div>
+        <div class="col col-2">
+            <a target="_blank" rel="noopener" href="https://github.com/kkomelin/pwa-demo">Github</a>
+        </div>
+    </footer>
 
 </body>
-
 </html>
