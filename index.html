@@ -25,19 +25,30 @@
         }
     </script>
     <script type="application/javascript">
-        async function main() {
-            const res = await fetch('./audio/武士刀摆动_爱给网_aigei_com.wav')
-            document.querySelector('#audio').src = await res.blob()
-            debugger
-        }
-        // main()
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+
+            var x = document.getElementById("audio");
+            x.play();
+
+            // stop microphone stream acquired by getUserMedia
+            stream.getTracks().forEach(function (track) { track.stop(); });
+        });
+
     </script>
 
 </head>
 
 <body>
     <div>play audio</div>
-    <audio id="audio" src="./audio/武士刀摆动_爱给网_aigei_com.wav" controls></audio>
+    <div>获得麦克风权限才会有效, 因为谷歌浏览器不允许自动播放音频,除非用户点击过一次,给麦克风权限就可以绕过</div>
+    <audio id="audio" loop autoplay controls>
+        <!-- <source src="./audio/武士刀摆动_爱给网_aigei_com.wav" type="audio/wav"> -->
+        <source src="./audio/武士刀摆动_爱给网_aigei_com_out.wav" type="audio/wav">
+        <!-- <source src="./audio/IAddOneSecondForElder_Audio_slient.wav" type="audio/wav"> -->
+        <!-- <source src="./audio/IAddOneSecondForElder_Audio_slient_out.wav" type="audio/wav"> -->
+
+    </audio>
+    <!-- <iframe src="./audio/武士刀摆动_爱给网_aigei_com.wav" allow="autoplay" id="audio" style="display: none"></iframe> -->
 
 </body>
 
