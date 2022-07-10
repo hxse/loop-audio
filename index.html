@@ -19,9 +19,31 @@
 
 <body class="fullscreen">
     <div class="container">
-        <h1 class="title">Hello World!</h1>
+        <!-- <h1 class="title">Hello World!</h1> -->
     </div>
     <script src="js/main.js"></script>
+
+    <div>play audio</div>
+    <div>获得麦克风权限才会有效, 因为谷歌浏览器不允许自动播放音频,除非用户点击过一次,给麦克风权限就可以绕过</div>
+    <audio id="audio" loop autoplay controls>
+        <!-- <source src="./audio/武士刀摆动_爱给网_aigei_com.wav" type="audio/wav"> -->
+        <source src="./audio/武士刀摆动_爱给网_aigei_com_out.wav" type="audio/wav">
+        <!-- <source src="./audio/IAddOneSecondForElder_Audio_slient.wav" type="audio/wav"> -->
+        <!-- <source src="./audio/IAddOneSecondForElder_Audio_slient_out.wav" type="audio/wav"> -->
+
+    </audio>
+    <script type="application/javascript">
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+
+            var x = document.getElementById("audio");
+            x.play();
+
+            // stop microphone stream acquired by getUserMedia
+            stream.getTracks().forEach(function (track) { track.stop(); });
+        });
+
+    </script>
+
 </body>
 
 </html>
